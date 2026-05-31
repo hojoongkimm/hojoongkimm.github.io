@@ -80,6 +80,9 @@
     .subtabs{top:0}.subtabs .in{overflow-x:auto}
     .ftop{grid-template-columns:1fr}
   }
+  .topbar{background:var(--navy);color:#cdd8ea;font-size:.78rem}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:38px;max-width:1180px}
+  .topbar a{color:#cdd8ea;opacity:.85}.topbar a:hover{opacity:1}.topbar .sep{margin:0 8px;opacity:.35}
   .topbar .uni{display:flex;align-items:center;gap:9px}
   .topbar .uni img{height:24px;width:auto;background:#fff;border-radius:5px;padding:2px 3px}
   .topbar .uni b{color:#eaf1fb;font-weight:700;font-size:.78rem}
@@ -126,26 +129,26 @@
 </div></nav>
 
 <div class="awrap">
-  <p class="intro">연구실을 거쳐 산업·학계 각 분야에서 활약하고 있는 동문들입니다. (일부 학위논문 정보는 추후 보완 예정)</p>
+  <p class="intro">연구실을 거쳐 산업·학계 각 분야에서 활약하고 있는 동문들입니다.</p>
   <div class="tablescroll">
     <table class="atbl">
       <thead><tr><th style="width:150px">이름</th><th>학위논문 / Thesis</th><th style="width:190px">현재 / Now</th></tr></thead>
       <tbody>
-        <tr><td><span class="nm">배경열</span><span class="deg phd">Ph.D. 2025.02</span></td><td class="th">해석가능한 기계학습을 활용한 적 위협 탐지 및 분석</td><td class="now">—</td></tr>
+        <tr><td><span class="nm">배경열</span><span class="deg phd">Ph.D. 2025.02</span></td><td class="th">해석가능한 기계학습을 활용한 적 위협 탐지 및 분석에 관한 연구</td><td class="now">—</td></tr>
         <tr><td><span class="nm">최기정</span><span class="deg">M.S.</span></td><td class="th">N-BEATS를 이용한 시계열 변화점 탐지</td><td class="now">메가존 클라우드</td></tr>
         <tr><td><span class="nm">황정준</span><span class="deg">M.S.</span></td><td class="th">대조학습을 활용한 비지도 토픽 모델링</td><td class="now">GS에너지</td></tr>
-        <tr><td><span class="nm">안영근</span><span class="deg">M.S.</span></td><td class="th">GNN 기반 다변량 시계열 데이터 이상치 탐지</td><td class="now">삼성전자 Foundry</td></tr>
-        <tr><td><span class="nm">이승연</span><span class="deg">M.S.</span></td><td class="th">교차 합성곱을 이용한 딥러닝 기반 추천 시스템</td><td class="now">Ohio State Univ. (박사과정)</td></tr>
-        <tr><td><span class="nm">하소미</span><span class="deg">M.S.</span></td><td class="th">외생변수·추세·계절성을 고려한 시계열 예측</td><td class="now">피아이이</td></tr>
-        <tr><td><span class="nm">박민영</span><span class="deg">M.S.</span></td><td class="th muted">—</td><td class="now">삼성전자 Foundry</td></tr>
-        <tr><td><span class="nm">조은지</span><span class="deg">M.S.</span></td><td class="th muted">—</td><td class="now">BISTelligence</td></tr>
-        <tr><td><span class="nm">이철희</span><span class="deg">M.S.</span></td><td class="th muted">—</td><td class="now">BISTelligence</td></tr>
-        <tr><td><span class="nm">서정용</span><span class="deg">M.S.</span></td><td class="th muted">—</td><td class="now">미소테크</td></tr>
-        <tr><td><span class="nm">송낙윤</span><span class="deg">M.S.</span></td><td class="th muted">—</td><td class="now">캐롯손해보험</td></tr>
-        <tr><td><span class="nm">윤동희</span><span class="deg">M.S.</span></td><td class="th muted">—</td><td class="now">GS에너지</td></tr>
-        <tr><td><span class="nm">김수민</span><span class="deg">M.S.</span></td><td class="th muted">—</td><td class="now">엔씨소프트</td></tr>
-        <tr><td><span class="nm">이상용</span><span class="deg">M.S.</span></td><td class="th muted">—</td><td class="now muted">—</td></tr>
-        <tr><td><span class="nm">윤수아</span><span class="deg">M.S.</span></td><td class="th muted">—</td><td class="now">데이터사이언스연구실 (Researcher)</td></tr>
+        <tr><td><span class="nm">안영근</span><span class="deg">M.S.</span></td><td class="th">그래프 신경망을 이용한 다변량 시계열 데이터 기반의 이상치 탐지 알고리즘 개발</td><td class="now">삼성전자 Foundry</td></tr>
+        <tr><td><span class="nm">이승연</span><span class="deg">M.S.</span></td><td class="th">교차 합성곱을 이용한 딥러닝 기반의 추천 시스템 개발</td><td class="now">Ohio State Univ. (박사과정)</td></tr>
+        <tr><td><span class="nm">하소미</span><span class="deg">M.S.</span></td><td class="th">외생변수와 추세 및 계절성을 고려한 시계열 예측 알고리즘</td><td class="now">피아이이</td></tr>
+        <tr><td><span class="nm">박민영</span><span class="deg">M.S.</span></td><td class="th">분류모델을 위한 패턴개발의 신경망 개발</td><td class="now">삼성전자 Foundry</td></tr>
+        <tr><td><span class="nm">조은지</span><span class="deg">M.S.</span></td><td class="th">데이터 분포를 고려한 A/B 테스팅 방법 개발</td><td class="now">BISTelligence</td></tr>
+        <tr><td><span class="nm">이철희</span><span class="deg">M.S.</span></td><td class="th">비정형 데이터를 위한 딥러닝 기반의 군집화 알고리즘 개발</td><td class="now">BISTelligence</td></tr>
+        <tr><td><span class="nm">서정용</span><span class="deg">M.S.</span></td><td class="th">과학계량분석을 통한 기술의 미래 성장 가능성 예측 연구</td><td class="now">미소테크</td></tr>
+        <tr><td><span class="nm">송낙윤</span><span class="deg">M.S.</span></td><td class="th">딥러닝을 이용한 해석 가능한 함수 추정에 관한 연구</td><td class="now">캐롯손해보험</td></tr>
+        <tr><td><span class="nm">윤동희</span><span class="deg">M.S.</span></td><td class="th">딥러닝을 이용한 시계열 데이터 군집화에 관한 연구</td><td class="now">GS에너지</td></tr>
+        <tr><td><span class="nm">김수민</span><span class="deg">M.S.</span></td><td class="th">오토인코더를 위한 변수 선택 방법 개발</td><td class="now">엔씨소프트</td></tr>
+        <tr><td><span class="nm">이상용</span><span class="deg">M.S.</span></td><td class="th">딥러닝 기반의 설명가능한 다중센서 이상탐지 방법 개발</td><td class="now muted">—</td></tr>
+        <tr><td><span class="nm">윤수아</span><span class="deg">M.S.</span></td><td class="th">클래스 불균형을 고려한 다기관 EEG 기반 디지털 치료제 반응 예측 모델 개발</td><td class="now">데이터사이언스연구실 (Researcher)</td></tr>
       </tbody>
     </table>
   </div>
