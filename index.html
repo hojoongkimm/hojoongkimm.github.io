@@ -305,15 +305,17 @@
     <span class="bt"><b>DATA SCIENCE LAB</b><span>명지대학교 데이터사이언스 연구실</span></span>
   </a>
   <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="research.html">Research</a>
-    <a href="projects.html">Projects</a>
-    <a href="publications.html">Publications</a>
-    <div class="hassub"><a class="top" href="professor.html">People &#9662;</a>
+    <a href="index.html" class="on">Home</a>
+    <div class="hassub"><a class="top" href="news.html">About &#9662;</a>
+      <div class="sub"><a href="news.html">News</a><a href="awards.html">Awards</a><a href="lectures.html">Lectures</a></div>
+    </div>
+    <div class="hassub"><a class="top" href="professor.html">Members &#9662;</a>
       <div class="sub"><a href="professor.html">Professor</a><a href="students.html">Students</a><a href="alumni.html">Alumni</a></div>
     </div>
-    <a href="lectures.html">Lectures</a>
-    <a href="news.html">News</a>
+    <a href="publications.html">Publications</a>
+    <div class="hassub"><a class="top" href="research.html">Research &#9662;</a>
+      <div class="sub"><a href="research.html">Research Areas</a><a href="projects.html">Projects</a></div>
+    </div>
     <a href="index.html#contact">Contact</a>
   </div>
   <div class="burger" onclick="document.querySelector('.menu').style.display='flex'"><span></span><span></span><span></span></div>
@@ -429,7 +431,7 @@
 <!-- OUR TEAM (preview) -->
 <section id="team-preview">
   <div class="wrap">
-    <div class="shead reveal"><div class="eyebrow">People</div><h2>Our Team</h2><div class="bar"></div><p>교수 · 재학생 · 졸업생 — 항목별로 자세히 살펴보세요.</p></div>
+    <div class="shead reveal"><div class="eyebrow">Members</div><h2>Our Team</h2><div class="bar"></div><p>교수 · 재학생 · 졸업생 — 항목별로 자세히 살펴보세요.</p></div>
     <div class="hub">
       <a class="hubcard reveal" href="professor.html">
         <div class="ic"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 19.5a7.5 7.5 0 0115 0v.75H4.5v-.75z"/></svg></div>
@@ -450,14 +452,18 @@
 <!-- EXPLORE MORE: Lectures + News -->
 <section class="pubs" id="explore">
   <div class="wrap">
-    <div class="hub two">
-      <a class="hubcard reveal" href="lectures.html">
-        <div class="ic"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.25C10.5 5.2 8.5 4.75 6.5 4.75c-1 0-2 .12-3 .35v12.5c1-.23 2-.35 3-.35 2 0 4 .45 5.5 1.5 1.5-1.05 3.5-1.5 5.5-1.5 1 0 2 .12 3 .35V5.1c-1-.23-2-.35-3-.35-2 0-4 .45-5.5 1.5zm0 0v12.5"/></svg></div>
-        <h3>Lectures</h3><p>학부·대학원 강의 8과목 — 데이터마이닝, 그래프 머신러닝, 인공지능 특론 등.</p><span class="go">강의 보기 &rarr;</span>
-      </a>
+    <div class="hub">
       <a class="hubcard reveal" href="news.html">
         <div class="ic"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h6m-6 4h6m-6 4h3M4.5 5.25h15a.75.75 0 01.75.75v12a.75.75 0 01-.75.75h-15a.75.75 0 01-.75-.75V6a.75.75 0 01.75-.75z"/></svg></div>
-        <h3>News &amp; Awards</h3><p>연구실 소식과 수상 13건 — 최신 공지·합류·졸업·수상 내역.</p><span class="go">소식 보기 &rarr;</span>
+        <h3>News</h3><p>연구실 공지·합류·졸업 등 최신 소식을 확인하세요.</p><span class="go">소식 보기 &rarr;</span>
+      </a>
+      <a class="hubcard reveal" href="awards.html">
+        <div class="ic"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.982-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/></svg></div>
+        <h3>Awards</h3><p>학회·해커톤·교육상 등 수상 13건을 확인하세요.</p><span class="go">수상 보기 &rarr;</span>
+      </a>
+      <a class="hubcard reveal" href="lectures.html">
+        <div class="ic"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.25C10.5 5.2 8.5 4.75 6.5 4.75c-1 0-2 .12-3 .35v12.5c1-.23 2-.35 3-.35 2 0 4 .45 5.5 1.5 1.5-1.05 3.5-1.5 5.5-1.5 1 0 2 .12 3 .35V5.1c-1-.23-2-.35-3-.35-2 0-4 .45-5.5 1.5zm0 0v12.5"/></svg></div>
+        <h3>Lectures</h3><p>학부·대학원 강의 8과목 — 데이터마이닝, 그래프 머신러닝 등.</p><span class="go">강의 보기 &rarr;</span>
       </a>
     </div>
   </div>
@@ -492,8 +498,8 @@
         <div class="mt"><b>MYONGJI UNIVERSITY</b><span>명지대학교 · Industrial &amp; Management Eng.</span></div>
       </div>
     </div>
-    <div class="fcol"><h4>Explore</h4><a href="research.html">Research</a><a href="projects.html">Projects</a><a href="publications.html">Publications</a><a href="lectures.html">Lectures</a><a href="news.html">News</a></div>
-    <div class="fcol"><h4>People &amp; Links</h4>
+    <div class="fcol"><h4>Explore</h4><a href="news.html">News</a><a href="awards.html">Awards</a><a href="lectures.html">Lectures</a><a href="research.html">Research</a><a href="projects.html">Projects</a><a href="publications.html">Publications</a></div>
+    <div class="fcol"><h4>Members &amp; Links</h4>
       <a href="professor.html">Professor</a><a href="students.html">Students</a><a href="alumni.html">Alumni</a>
       <a href="https://www.mju.ac.kr" target="_blank">명지대학교</a>
       <a href="https://scholar.google.co.kr/citations?user=NFUGvgIAAAAJ&hl=ko" target="_blank">Google Scholar</a>
