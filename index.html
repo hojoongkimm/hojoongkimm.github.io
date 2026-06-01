@@ -289,6 +289,23 @@
   @media(max-width:980px){.rgrid,.pjgrid,.hub.two{grid-template-columns:1fr}}
 </style>
 
+<style>
+  #activity-preview .acards{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:880px;margin:0 auto}
+  #activity-preview .acard{display:block;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;transition:.25s;text-decoration:none}
+  #activity-preview .acard:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 18px 44px rgba(19,41,75,.12)}
+  #activity-preview .amedia{position:relative;height:200px;background:var(--soft2);overflow:hidden}
+  #activity-preview .aslide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease}
+  #activity-preview .aslide.on{opacity:1}
+  #activity-preview .amedia.sem{background:linear-gradient(135deg,#13294B 0%,#244F8E 100%);display:grid;place-items:center}
+  #activity-preview .amedia.sem svg{width:58px;height:58px;color:#9fc0ff}
+  #activity-preview .atag{position:absolute;left:16px;bottom:14px;background:rgba(7,16,30,.55);color:#fff;font-size:.78rem;font-weight:600;padding:5px 12px;border-radius:999px}
+  #activity-preview .amedia.sem .atag{background:rgba(255,255,255,.18)}
+  #activity-preview .abody{padding:22px 26px}
+  #activity-preview .abody h3{font-weight:800;color:var(--navy);font-size:1.3rem;margin-bottom:6px}
+  #activity-preview .abody p{color:var(--muted);font-size:.9rem;margin-bottom:10px}
+  #activity-preview .abody .go{color:var(--accent);font-weight:700;font-size:.9rem}
+  @media(max-width:640px){#activity-preview .acards{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
@@ -480,16 +497,21 @@
 <section id="activity-preview">
   <div class="wrap">
     <div class="shead reveal"><div class="eyebrow">Activity</div><h2>Lab Activity</h2><div class="bar"></div><p>연구실 활동 사진과 랩 세미나 자료를 모았습니다.</p></div>
-    <div class="hub" style="grid-template-columns:repeat(2,1fr);max-width:780px;margin:0 auto">
-      <a class="hubcard reveal" href="album.html">
-        <div class="ic"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 19.5h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></div>
-        <h3>Album</h3><p>워크숍 · MT · 졸업식 등 연구실 활동 사진 갤러리.</p><span class="go">사진 보기 &rarr;</span>
-      </a>
-      <a class="hubcard reveal" href="lab-seminar.html">
-        <div class="ic"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5m3-3.75v3.75m3-6v6"/></svg></div>
-        <h3>Lab Seminar</h3><p>랩 세미나 발표 슬라이드 · 논문 리뷰 자료를 확인하세요.</p><span class="go">자료 보기 &rarr;</span>
-      </a>
-    </div>
+    <div class="acards">
+        <a class="acard reveal" href="album.html">
+          <div class="amedia" id="actSlides">
+            <div class="aslide on" style="background-image:url('images/hero-1.jpg')"></div>
+            <div class="aslide" style="background-image:url('images/hero-2.jpg')"></div>
+            <div class="aslide" style="background-image:url('images/hero-3.jpg')"></div>
+            <span class="atag">Album</span>
+          </div>
+          <div class="abody"><h3>Album</h3><p>워크숍 · MT · 졸업식 등 연구실 활동 사진.</p><span class="go">사진 보기 &rarr;</span></div>
+        </a>
+        <a class="acard reveal" href="lab-seminar.html">
+          <div class="amedia sem"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5m3-3.75v3.75m3-6v6"/></svg><span class="atag">Lab Seminar</span></div>
+          <div class="abody"><h3>Lab Seminar</h3><p>랩 세미나 발표 슬라이드 · 논문 리뷰 자료.</p><span class="go">자료 보기 &rarr;</span></div>
+        </a>
+      </div>
   </div>
 </section>
 
@@ -545,6 +567,7 @@
   const statObs=new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.cnt').forEach(animateCount);o.unobserve(e.target)}}),{threshold:.35});
   const ss=document.querySelector('.stats');if(ss)statObs.observe(ss);
   (function(){var sl=document.querySelectorAll('#heroSlides .hslide');if(sl.length>1){var i=0;setInterval(function(){sl[i].classList.remove('on');i=(i+1)%sl.length;sl[i].classList.add('on');},5000);}})();
+(function(){var a=document.querySelectorAll('#actSlides .aslide');if(a.length>1){var j=0;setInterval(function(){a[j].classList.remove('on');j=(j+1)%a.length;a[j].classList.add('on');},4000);}})();
 </script>
 
 </body>

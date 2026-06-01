@@ -199,17 +199,35 @@
   @media(max-width:980px){.rrow,.pjgrid,.pubcols,.news{grid-template-columns:1fr}.pitem{grid-template-columns:34px 1fr}}
 </style>
 <style>
-  .seminars{display:flex;flex-direction:column;gap:12px}
-  .sem{display:grid;grid-template-columns:108px 1fr auto;gap:18px;align-items:center;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:16px 22px;transition:.2s}
-  .sem:hover{border-color:var(--accent);box-shadow:0 12px 30px rgba(19,41,75,.08)}
-  .sem .d{color:var(--accent);font-weight:700;font-size:.85rem}
-  .sem .t{color:var(--navy);font-weight:600;line-height:1.4}
-  .sem .t small{display:block;color:var(--muted);font-weight:400;font-size:.82rem;margin-top:3px}
-  .sem a.dl{display:inline-block;background:var(--accent);color:#fff;padding:9px 16px;border-radius:9px;font-size:.85rem;font-weight:600;white-space:nowrap}
-  .sem a.dl:hover{filter:brightness(1.08)}
-  .sem .na{color:var(--dim);font-size:.85rem;white-space:nowrap}
-  @media(max-width:640px){.sem{grid-template-columns:1fr;gap:6px}}
-</style>
+  /* SEMINAR — card grid + search */
+  .albar{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin:-6px 0 26px}
+  .albar .cnt{font-weight:800;color:var(--accent);font-size:.95rem}
+  .albar .cnt b{color:var(--navy);font-weight:800}
+  .search{position:relative;min-width:min(300px,100%);display:block}
+  .search input{width:100%;border:1px solid var(--line);background:var(--soft);border-radius:10px;padding:11px 14px 11px 40px;font-family:inherit;font-size:.92rem;color:var(--ink);transition:.2s}
+  .search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(47,98,181,.12)}
+  .search>svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--dim)}
+  .scard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+  .scard{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:.28s;box-shadow:0 1px 2px rgba(19,41,75,.05)}
+  .scard:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(19,41,75,.15);border-color:#d3def0}
+  .scard .th{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--soft2);border-bottom:1px solid var(--line)}
+  .scard .th img{width:100%;height:100%;object-fit:cover}
+  .scard .chip{position:absolute;top:10px;left:10px;z-index:2;font-weight:700;font-size:.7rem;letter-spacing:.02em;padding:4px 11px;border-radius:99px;color:#fff;background:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.18)}
+  .scard .chip.dl{background:#2F62B5}.scard .chip.ml{background:#6B4F9E}.scard .chip.tr{background:#1C7A6B}
+  .scard .bd{padding:15px 18px 16px;flex:1;display:flex;flex-direction:column}
+  .scard .ti{font-weight:700;color:var(--navy);font-size:1rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .scard .who{display:flex;align-items:center;gap:8px;color:#3a4658;font-weight:600;font-size:.88rem;margin-top:12px}
+  .scard .who .av{width:26px;height:26px;border-radius:50%;background:var(--soft2);display:grid;place-items:center;color:var(--accent);flex:none}
+  .scard .who .av svg{width:15px;height:15px}
+  .scard .dt{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.84rem;margin-top:8px}
+  .scard .dt svg{width:15px;height:15px;color:var(--dim);flex:none}
+  .scard .go{border-top:1px solid var(--line);padding:13px 18px;color:var(--accent);font-weight:700;font-size:.88rem;text-align:center;transition:.2s;display:block}
+  .scard .go:hover{background:var(--soft);color:var(--accent-d)}
+  .scard .go.na{color:var(--dim);cursor:default}
+  .sem-empty,.no-result{color:var(--muted);text-align:center;padding:46px 0}
+  .no-result{display:none}
+  @media(max-width:560px){.scard-grid{grid-template-columns:1fr;gap:14px}}
+  </style>
 </head>
 <body>
 <div class="topbar"><div class="wrap">
@@ -247,7 +265,12 @@
 <section>
   <div class="wrap">
     <div class="shead reveal"><div class="eyebrow">Seminar</div><h2>Lab Seminar</h2><div class="bar"></div><p>랩 세미나 발표 슬라이드와 논문 리뷰 자료입니다.</p></div>
-    <div id="seminars" class="seminars"></div>
+    <div class="albar reveal">
+      <div class="cnt">전체 <b id="scount">0</b>개 발표</div>
+      <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="ssearch" type="text" placeholder="제목·발표자 검색 (예: 김호중, RandAugment)" autocomplete="off"></label>
+    </div>
+    <div id="seminar" class="scard-grid"></div>
+    <p class="no-result" id="snores">검색 결과가 없습니다.</p>
   </div>
 </section>
 
@@ -262,23 +285,89 @@
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ===== 랩 세미나 자료: 이 배열만 수정하세요 (PDF는 files/seminars/ 폴더에 올린 뒤 항목 추가) ===== */
-var seminars = [
-  // 예시 항목입니다. 실제 자료로 교체하거나 추가하세요.
-  {date:"2026.03.20", title:"Graph Neural Networks for Tabular Data", who:"홍길동", file:"files/seminars/2026-03-20_홍길동_GNN.pdf"},
-  {date:"2026.03.13", title:"Contrastive Learning 기초와 응용", who:"김철수", file:""}
-];
-/* ============================================================== */
-(function(){
-  var c=document.getElementById('seminars'); if(!c) return;
-  if(!seminars.length){ c.innerHTML='<p style="color:var(--muted)">등록된 세미나 자료가 아직 없습니다.</p>'; return; }
-  seminars.forEach(function(s){
-    var row=document.createElement('div'); row.className='sem';
-    var act = s.file ? '<a class="dl" href="'+s.file+'" target="_blank" rel="noopener">자료 보기 &#8599;</a>' : '<span class="na">자료 준비중</span>';
-    row.innerHTML='<div class="d">'+s.date+'</div><div class="t">'+s.title+(s.who?'<small>발표 · '+s.who+'</small>':'')+'</div>'+act;
-    c.appendChild(row);
-  });
-})();
+/* ===== 랩 세미나: 이 배열만 수정하세요 =====
+     · 자료(PDF)는 files/seminars/ 폴더에 올리세요 (파일명 공백 없이).
+     · 시리즈(series)별로 묶고, items 에 발표 항목을 나열하세요.
+     · 각 항목: {title:"제목", who:"발표자(생략 가능)", file:"files/seminars/파일.pdf"}  (file 을 ""로 비우면 '자료 준비중') */
+  var series = [
+    {name:"DL 세미나", items:[
+      {title:"Deep Learning Foundations and Concepts — 1주차", who:"김호중", date:"2026.01.23", file:"files/seminars/dl-week01.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 2주차", who:"안재국", date:"2026.01.30", file:"files/seminars/dl-week02.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 3주차", who:"김호중", date:"2026.02.13", file:"files/seminars/dl-week03.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 4주차", who:"안재국", date:"2026.02.27", file:"files/seminars/dl-week04.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 5주차", who:"김호중", date:"2026.03.05", file:"files/seminars/dl-week05.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 6주차", who:"안재국", date:"2026.03.12", file:"files/seminars/dl-week06.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 7주차", who:"김호중", date:"2026.03.19", file:"files/seminars/dl-week07.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 8주차", who:"안재국", date:"2026.03.26", file:"files/seminars/dl-week08.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 9주차", who:"김호중", date:"2026.04.02", file:"files/seminars/dl-week09.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 10주차", who:"안재국", date:"2026.04.09", file:"files/seminars/dl-week10.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 11주차", who:"김호중", date:"2026.05.07", file:"files/seminars/dl-week11.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 12주차", who:"김호중", date:"2026.05.14", file:"files/seminars/dl-week12.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 13주차", who:"안재국", date:"2026.05.21", file:"files/seminars/dl-week13.pdf"},
+      {title:"Deep Learning Foundations and Concepts — 14주차", who:"김호중", date:"2026.05.28", file:"files/seminars/dl-week14.pdf"}
+    ]},
+    {name:"ML 세미나", items:[
+      {title:"Probabilistic Machine Learning — Week 1", who:"김무진", date:"2026.01.23", file:"files/seminars/ml-week01.pdf"},
+      {title:"Probabilistic Machine Learning — Week 2", who:"박준수", date:"2026.01.30", file:"files/seminars/ml-week02.pdf"},
+      {title:"Probabilistic Machine Learning — Week 3", who:"김무진", date:"2026.02.13", file:"files/seminars/ml-week03.pdf"},
+      {title:"Probabilistic Machine Learning — Week 4", who:"박준수", date:"2026.02.27", file:"files/seminars/ml-week04.pdf"},
+      {title:"Probabilistic Machine Learning — Week 5", who:"김무진", date:"2026.03.05", file:"files/seminars/ml-week05.pdf"},
+      {title:"Probabilistic Machine Learning — Week 6", who:"박준수", date:"2026.03.12", file:"files/seminars/ml-week06.pdf"},
+      {title:"Probabilistic Machine Learning — Week 7", who:"김무진", date:"2026.03.19", file:"files/seminars/ml-week07.pdf"},
+      {title:"Probabilistic Machine Learning — Week 8", who:"박준수", date:"2026.03.26", file:"files/seminars/ml-week08.pdf"},
+      {title:"Probabilistic Machine Learning — Week 9", who:"김무진", date:"2026.04.02", file:"files/seminars/ml-week09.pdf"},
+      {title:"Probabilistic Machine Learning — Week 10", who:"박준수", date:"2026.04.09", file:"files/seminars/ml-week10.pdf"},
+      {title:"Probabilistic Machine Learning — Week 11", who:"김무진", date:"2026.05.07", file:"files/seminars/ml-week11.pdf"},
+      {title:"Probabilistic Machine Learning — Week 12", who:"박준수", date:"2026.05.14", file:"files/seminars/ml-week12.pdf"},
+      {title:"Probabilistic Machine Learning — Week 13", who:"김무진", date:"2026.05.21", file:"files/seminars/ml-week13.pdf"},
+      {title:"Probabilistic Machine Learning — Week 14", who:"박준수", date:"2026.05.28", file:"files/seminars/ml-week14.pdf"}
+    ]},
+    {name:"연구동향 세미나", items:[
+      {title:"AutoAugment: Learning Augmentation Strategies from Data", who:"김도현", date:"2026.03.24", file:"files/seminars/trend-2026-03-24.pdf"},
+      {title:"Population Based Augmentation: Efficient Data Augmentation Policy Schedules", who:"최석림", date:"2026.03.31", file:"files/seminars/trend-2026-03-31.pdf"},
+      {title:"RandAugment: Practical Automated Data Augmentation with a Reduced Search Space", who:"김무진", date:"2026.04.07", file:"files/seminars/trend-2026-04-07.pdf"},
+      {title:"AugMix: A Simple Data Processing Method to Improve Robustness and Uncertainty", who:"고성혁", date:"2026.04.28", file:"files/seminars/trend-2026-04-28.pdf"},
+      {title:"TrivialAugment: Tuning-free Yet State-of-the-Art Data Augmentation", who:"윤수아", date:"2026.05.19", file:"files/seminars/trend-2026-05-19.pdf"},
+      {title:"“Why Should I Trust You?”: Explaining the Predictions of Any Classifier", who:"안재국", date:"2026.05.26", file:"files/seminars/trend-2026-05-26.pdf"}
+    ]}
+  ];
+  /* ============================================================== */
+  (function(){
+    var root=document.getElementById('seminar'); if(!root) return;
+    var PERSON='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"/></svg>';
+    var CAL='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>';
+    var all=[];
+    series.forEach(function(sr){
+      var key=sr.name.indexOf('DL')>=0?'dl':(sr.name.indexOf('ML')>=0?'ml':'tr');
+      var label=key==='dl'?'DL':(key==='ml'?'ML':'연구동향');
+      (sr.items||[]).forEach(function(it){
+        var thumb=it.file?it.file.replace('files/seminars/','images/seminars/').replace(/\.pdf$/i,'.jpg'):'';
+        all.push({title:it.title,who:it.who||'',date:it.date||'',file:it.file||'',thumb:thumb,key:key,label:label});
+      });
+    });
+    all.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+    document.getElementById('scount').textContent=all.length;
+    if(!all.length){ root.innerHTML='<p class="sem-empty">등록된 세미나 자료가 아직 없습니다.</p>'; return; }
+    all.forEach(function(it){
+      var card=document.createElement('div'); card.className='scard';
+      card.setAttribute('data-key',(it.title+' '+it.who+' '+it.label).toLowerCase());
+      var th='<div class="th"><span class="chip '+it.key+'">'+it.label+'</span>'+(it.thumb?'<img src="'+it.thumb+'" alt="" loading="lazy">':'')+'</div>';
+      var who=it.who?'<div class="who"><span class="av">'+PERSON+'</span>'+it.who+'</div>':'';
+      var dt=it.date?'<div class="dt">'+CAL+it.date+'</div>':'';
+      var go=it.file?'<a class="go" href="'+it.file+'" target="_blank" rel="noopener">자료 보기 &#8594;</a>':'<span class="go na">자료 준비중</span>';
+      card.innerHTML=th+'<div class="bd"><div class="ti">'+it.title+'</div>'+who+dt+'</div>'+go;
+      root.appendChild(card);
+    });
+    var si=document.getElementById('ssearch'), nores=document.getElementById('snores');
+    si.addEventListener('input',function(){
+      var q=si.value.trim().toLowerCase(), shown=0;
+      root.querySelectorAll('.scard').forEach(function(c){
+        var ok=!q||c.getAttribute('data-key').indexOf(q)>=0;
+        c.style.display=ok?'':'none'; if(ok) shown++;
+      });
+      nores.style.display=shown?'none':'';
+    });
+  })();
 </script>
 </body>
 </html>

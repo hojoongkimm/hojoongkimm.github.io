@@ -199,17 +199,37 @@
   @media(max-width:980px){.rrow,.pjgrid,.pubcols,.news{grid-template-columns:1fr}.pitem{grid-template-columns:34px 1fr}}
 </style>
 <style>
-  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
-  .gallery figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--soft);cursor:pointer;transition:.25s}
-  .gallery figure:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(19,41,75,.12)}
-  .gallery img{width:100%;height:220px;object-fit:cover;display:block}
-  .gallery figcaption{padding:12px 14px;font-size:.86rem;color:var(--muted)}
-  .lb{position:fixed;inset:0;background:rgba(7,16,30,.93);display:none;align-items:center;justify-content:center;z-index:200;padding:30px}
+  /* ALBUM — card grid + search */
+  .albar{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin:-6px 0 26px}
+  .albar .cnt{font-weight:800;color:var(--accent);font-size:.95rem}
+  .albar .cnt b{color:var(--navy);font-weight:800}
+  .search{position:relative;min-width:min(300px,100%);display:block}
+  .search input{width:100%;border:1px solid var(--line);background:var(--soft);border-radius:10px;padding:11px 14px 11px 40px;font-family:inherit;font-size:.92rem;color:var(--ink);transition:.2s}
+  .search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(47,98,181,.12)}
+  .search>svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--dim)}
+  .acard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+  .acard{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;cursor:pointer;transition:.28s;box-shadow:0 1px 2px rgba(19,41,75,.05)}
+  .acard:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(19,41,75,.15);border-color:#d3def0}
+  .acard .cv{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--soft2)}
+  .acard .cv img{width:100%;height:100%;object-fit:cover;transition:.45s}
+  .acard:hover .cv img{transform:scale(1.06)}
+  .acard .cv::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,20,38,.82),rgba(10,20,38,.12) 45%,transparent 72%)}
+  .acard .ov{position:absolute;left:0;right:0;bottom:0;padding:15px 18px;color:#fff;z-index:2}
+  .acard .ov .nm{font-weight:800;font-size:1.08rem;line-height:1.25;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+  .acard .ov .dt{font-size:.8rem;color:#dbe5f4;margin-top:3px;letter-spacing:.02em}
+  .acard .pill{position:absolute;top:11px;right:11px;z-index:2;background:rgba(255,255,255,.92);color:var(--navy);font-weight:700;font-size:.72rem;padding:4px 10px;border-radius:99px;backdrop-filter:blur(4px)}
+  .album-empty,.no-result{color:var(--muted);text-align:center;padding:46px 0}
+  .no-result{display:none}
+  .lb{position:fixed;inset:0;background:rgba(7,16,30,.94);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
   .lb.show{display:flex}
-  .lb img{max-width:92vw;max-height:84vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-  .lb .x{position:absolute;top:14px;right:24px;color:#fff;font-size:2.2rem;line-height:1;cursor:pointer;background:none;border:0}
-  .lb .cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#dfe7f2;font-size:.95rem;padding:0 20px}
-</style>
+  .lb img{max-width:90vw;max-height:82vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .lb .x{position:absolute;top:14px;right:22px;color:#fff;font-size:2.2rem;line-height:1;cursor:pointer;background:none;border:0;z-index:3}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.7rem;line-height:1;cursor:pointer;display:grid;place-items:center;transition:.2s;z-index:3}
+  .lb .nav:hover{background:rgba(255,255,255,.26)}
+  .lb .prev{left:18px}.lb .next{right:18px}
+  .lb .cap{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#dfe7f2;font-size:.92rem;padding:0 20px}
+  @media(max-width:560px){.acard-grid{grid-template-columns:1fr 1fr;gap:13px}.acard .ov .nm{font-size:.9rem}.lb .nav{width:40px;height:40px}}
+  </style>
 </head>
 <body>
 <div class="topbar"><div class="wrap">
@@ -247,7 +267,12 @@
 <section>
   <div class="wrap">
     <div class="shead reveal"><div class="eyebrow">Photos</div><h2>연구실 앨범</h2><div class="bar"></div><p>워크숍 · MT · 졸업식 · 학회 등 연구실의 순간들을 모았습니다.</p></div>
-    <div id="gallery" class="gallery"></div>
+    <div class="albar reveal">
+      <div class="cnt">전체 <b id="acount">0</b>개 행사</div>
+      <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><input id="asearch" type="text" placeholder="행사 검색 (예: 졸업식, 벚꽃)" autocomplete="off"></label>
+    </div>
+    <div id="album" class="acard-grid"></div>
+    <p class="no-result" id="anores">검색 결과가 없습니다.</p>
   </div>
 </section>
 
@@ -262,31 +287,96 @@
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-/* ===== 앨범 사진 목록: 이 배열만 수정하세요 (images/ 폴더에 사진을 올린 뒤 한 줄씩 추가) ===== */
-var photos = [
-  // images/ 폴더에 사진을 올린 뒤 아래처럼 한 줄씩 추가하세요.
-  // {src:"images/2026-graduation-1.jpg", cap:"2026 학위수여식"},
-  // {src:"images/2026-graduation-2.jpg", cap:"여름 워크숍"}
-];
-/* ============================================================== */
-(function(){
-  var g=document.getElementById('gallery'); if(!g) return;
-  var lb=document.createElement('div'); lb.className='lb';
-  lb.innerHTML='<button class="x" aria-label="닫기">&times;</button><img alt=""><div class="cap"></div>';
-  document.body.appendChild(lb);
-  var li=lb.querySelector('img'), lc=lb.querySelector('.cap');
-  lb.addEventListener('click',function(e){ if(e.target===lb||e.target.classList.contains('x')) lb.classList.remove('show'); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') lb.classList.remove('show'); });
-  if(!photos.length){ g.innerHTML='<p style="color:var(--muted)">등록된 사진이 아직 없습니다.</p>'; return; }
-  photos.forEach(function(p){
-    var fig=document.createElement('figure');
-    var im=document.createElement('img'); im.src=p.src; im.alt=p.cap||''; im.loading='lazy';
-    fig.appendChild(im);
-    if(p.cap){ var fc=document.createElement('figcaption'); fc.textContent=p.cap; fig.appendChild(fc); }
-    fig.addEventListener('click',function(){ li.src=p.src; lc.textContent=p.cap||''; lb.classList.add('show'); });
-    g.appendChild(fig);
-  });
-})();
+/* ===== 앨범: 이 배열만 수정하세요 =====
+     · 사진은 images/album/ 폴더에 올리세요 (파일명은 공백 없이 영문/숫자 권장).
+     · 행사(event)별로 묶고, 각 행사의 photos 에 파일 경로를 한 줄씩 나열하세요.
+     · 사진이 없는 행사는 화면에 표시되지 않습니다. */
+  var albums = [
+    {event:"2026.05.28 교수님 생신", photos:[
+      "images/album/birthday-01.jpg",
+      "images/album/birthday-02.jpg",
+      "images/album/birthday-03.jpg",
+      "images/album/birthday-04.jpg",
+      "images/album/birthday-05.jpg",
+      "images/album/birthday-06.jpg",
+      "images/album/birthday-07.jpg"
+    ]},
+    {event:"2026.05.15 스승의 날", photos:[
+      "images/album/teachersday-01.jpg",
+      "images/album/teachersday-02.jpg",
+      "images/album/teachersday-03.jpg",
+      "images/album/teachersday-04.jpg",
+      "images/album/teachersday-05.jpg",
+      "images/album/teachersday-06.jpg",
+      "images/album/teachersday-07.jpg",
+      "images/album/teachersday-08.jpg",
+      "images/album/teachersday-09.jpg"
+    ]},
+    {event:"2026.04.08 벚꽃 놀이", photos:[
+      "images/album/cherry-01.jpg",
+      "images/album/cherry-02.jpg",
+      "images/album/cherry-03.jpg",
+      "images/album/cherry-04.jpg",
+      "images/album/cherry-05.jpg",
+      "images/album/cherry-06.jpg",
+      "images/album/cherry-07.jpg",
+      "images/album/cherry-08.jpg",
+      "images/album/cherry-09.jpg",
+      "images/album/cherry-10.jpg",
+      "images/album/cherry-11.jpg",
+      "images/album/cherry-12.jpg"
+    ]},
+    {event:"2026.02.11 학사 졸업식", photos:[
+      "images/album/grad-bs-01.jpg",
+      "images/album/grad-bs-02.jpg",
+      "images/album/grad-bs-03.jpg",
+      "images/album/grad-bs-04.jpg",
+      "images/album/grad-bs-05.jpg"
+    ]},
+    {event:"2026.02.10 석사 졸업식", photos:[
+      "images/album/grad-ms-01.jpg",
+      "images/album/grad-ms-02.jpg",
+      "images/album/grad-ms-03.jpg",
+      "images/album/grad-ms-04.jpg",
+      "images/album/grad-ms-05.jpg",
+      "images/album/grad-ms-06.jpg"
+    ]}
+  ];
+  /* ============================================================== */
+  (function(){
+    var root=document.getElementById('album'); if(!root) return;
+    var lb=document.createElement('div'); lb.className='lb';
+    lb.innerHTML='<button class="x" aria-label="닫기">&times;</button><button class="nav prev" aria-label="이전">&#8249;</button><img alt=""><button class="nav next" aria-label="다음">&#8250;</button><div class="cap"></div>';
+    document.body.appendChild(lb);
+    var li=lb.querySelector('img'), lc=lb.querySelector('.cap');
+    var P=[], I=0, NM='';
+    function show(i){ I=(i+P.length)%P.length; li.src=P[I]; lc.textContent=NM+'  ('+(I+1)+' / '+P.length+')'; }
+    function close(){ lb.classList.remove('show'); }
+    lb.addEventListener('click',function(e){ if(e.target===lb||e.target.classList.contains('x')) close(); });
+    lb.querySelector('.prev').addEventListener('click',function(e){ e.stopPropagation(); show(I-1); });
+    lb.querySelector('.next').addEventListener('click',function(e){ e.stopPropagation(); show(I+1); });
+    document.addEventListener('keydown',function(e){ if(!lb.classList.contains('show')) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(I-1); else if(e.key==='ArrowRight') show(I+1); });
+    function parse(ev){ var m=ev.match(/^(\d{4}\.\d{2}\.\d{2})\s+(.*)$/); return m?{date:m[1],name:m[2]}:{date:'',name:ev}; }
+    var valid=albums.filter(function(a){ return a.photos&&a.photos.length; });
+    document.getElementById('acount').textContent=valid.length;
+    if(!valid.length){ root.innerHTML='<p class="album-empty">등록된 사진이 아직 없습니다.</p>'; return; }
+    valid.forEach(function(a){
+      var p=parse(a.event), photos=a.photos;
+      var card=document.createElement('div'); card.className='acard'; card.setAttribute('data-key',a.event.toLowerCase());
+      card.innerHTML='<div class="cv"><span class="pill">'+photos.length+'장</span><img src="'+photos[0]+'" alt="'+p.name+'" loading="lazy"></div><div class="ov"><div class="nm">'+p.name+'</div><div class="dt">'+p.date+'</div></div>';
+      card.addEventListener('click',function(){ P=photos; NM=p.name; lb.classList.add('show'); show(0); });
+      root.appendChild(card);
+    });
+    var si=document.getElementById('asearch'), nores=document.getElementById('anores');
+    si.addEventListener('input',function(){
+      var q=si.value.trim().toLowerCase(), shown=0;
+      root.querySelectorAll('.acard').forEach(function(c){
+        var ok=!q||c.getAttribute('data-key').indexOf(q)>=0;
+        c.style.display=ok?'':'none'; if(ok) shown++;
+      });
+      nores.style.display=shown?'none':'';
+    });
+  })();
 </script>
 </body>
 </html>
