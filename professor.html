@@ -61,7 +61,8 @@
 
   .layout{display:grid;grid-template-columns:300px 1fr;gap:46px;padding:64px 0 90px}
   .pcard{position:sticky;top:100px;align-self:start;background:var(--soft);border:1px solid var(--line);border-radius:18px;padding:26px;text-align:center}
-  .pcard .ph{aspect-ratio:1;border-radius:14px;background:var(--soft2);display:grid;place-items:center;color:var(--dim);font-size:.72rem;letter-spacing:.2em;border:1px solid var(--line);margin-bottom:18px}
+  .pcard .ph{aspect-ratio:1;border-radius:14px;background:var(--soft2);display:grid;place-items:center;color:var(--dim);font-size:.72rem;letter-spacing:.2em;border:1px solid var(--line);margin-bottom:18px;overflow:hidden}
+  .pcard .ph img{width:100%;height:100%;object-fit:cover;display:block}
   .pcard .nm{font-weight:800;font-size:1.5rem;color:var(--navy)}
   .pcard .en{color:var(--muted);font-size:.9rem;margin-bottom:16px}
   .pcard .info{text-align:left;border-top:1px solid var(--line);padding-top:16px;margin-top:4px}
@@ -150,7 +151,8 @@
     <div class="hassub"><a class="top" href="research.html">Research &#9662;</a>
       <div class="sub"><a href="research.html">Research Areas</a><a href="projects.html">Projects</a></div>
     </div>
-    <a href="index.html#contact">Contact</a>
+    <div class="hassub"><a class="top" href="album.html">Activity &#9662;</a><div class="sub"><a href="album.html">Album</a><a href="lab-seminar.html">Lab Seminar</a></div></div>
+      <a href="index.html#contact">Contact</a>
   </div>
   <div class="burger" onclick="document.querySelector('.menu').style.display='flex'"><span></span><span></span><span></span></div>
 </nav></header>
@@ -171,7 +173,7 @@
 
   <!-- PROFILE CARD -->
   <aside class="pcard">
-    <div class="ph">PHOTO</div>
+    <div class="ph"><img src="images/professor.jpg" alt="김도현 교수 (Kim, Dohyun)"></div>
     <div class="nm">김도현</div>
     <div class="en">Kim, Dohyun</div>
     <div class="info">

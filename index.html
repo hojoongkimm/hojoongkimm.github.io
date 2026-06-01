@@ -73,9 +73,11 @@
   /* HERO (full-bleed, photo-ready) */
   .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;background:#0c1b33}
   .hero-bg{position:absolute;inset:0;background:linear-gradient(120deg,#0c1c36 0%,#16356a 55%,#1d4f93 100%);background-size:cover;background-position:center}
+  .hero-bg .hslide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.4s ease}
+  .hero-bg .hslide.on{opacity:1}
   /* ↑ 실제 사진으로 교체: .hero-bg{ background:url('assets/hero.jpg') center/cover; } */
   .hero-bg::after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.06) 1px,transparent 0);background-size:30px 30px}
-  .hero-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,16,30,.86) 0%,rgba(7,16,30,.6) 42%,rgba(7,16,30,.32) 100%)}
+  .hero-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,16,30,.9) 0%,rgba(7,16,30,.64) 42%,rgba(7,16,30,.4) 100%)}
   .hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:150px 28px 96px;width:100%}
   .hero-left .eyebrow{color:#8fb6ff}
   .hero-left h1{font-weight:800;font-size:clamp(2.7rem,6vw,4.8rem);line-height:1.03;letter-spacing:-.02em;color:#fff;margin:14px 0 16px}
@@ -316,14 +318,19 @@
     <div class="hassub"><a class="top" href="research.html">Research &#9662;</a>
       <div class="sub"><a href="research.html">Research Areas</a><a href="projects.html">Projects</a></div>
     </div>
-    <a href="index.html#contact">Contact</a>
+    <div class="hassub"><a class="top" href="album.html">Activity &#9662;</a><div class="sub"><a href="album.html">Album</a><a href="lab-seminar.html">Lab Seminar</a></div></div>
+      <a href="index.html#contact">Contact</a>
   </div>
   <div class="burger" onclick="document.querySelector('.menu').style.display='flex'"><span></span><span></span><span></span></div>
 </nav></div></header>
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-bg"></div>
+  <div class="hero-bg" id="heroSlides">
+    <div class="hslide on" style="background-image:url('images/hero-1.jpg')"></div>
+    <div class="hslide" style="background-image:url('images/hero-2.jpg')"></div>
+    <div class="hslide" style="background-image:url('images/hero-3.jpg')"></div>
+  </div>
   <div class="hero-ov"></div>
   <div class="wrap hero-grid">
     <div class="hero-left">
@@ -469,6 +476,23 @@
   </div>
 </section>
 
+<!-- ACTIVITY shortcuts -->
+<section id="activity-preview">
+  <div class="wrap">
+    <div class="shead reveal"><div class="eyebrow">Activity</div><h2>Lab Activity</h2><div class="bar"></div><p>연구실 활동 사진과 랩 세미나 자료를 모았습니다.</p></div>
+    <div class="hub" style="grid-template-columns:repeat(2,1fr);max-width:780px;margin:0 auto">
+      <a class="hubcard reveal" href="album.html">
+        <div class="ic"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 19.5h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg></div>
+        <h3>Album</h3><p>워크숍 · MT · 졸업식 등 연구실 활동 사진 갤러리.</p><span class="go">사진 보기 &rarr;</span>
+      </a>
+      <a class="hubcard reveal" href="lab-seminar.html">
+        <div class="ic"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5m3-3.75v3.75m3-6v6"/></svg></div>
+        <h3>Lab Seminar</h3><p>랩 세미나 발표 슬라이드 · 논문 리뷰 자료를 확인하세요.</p><span class="go">자료 보기 &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
@@ -520,6 +544,7 @@
   function animateCount(el){const to=+el.dataset.to,dur=1600;let s=null;function step(t){if(!s)s=t;const p=Math.min((t-s)/dur,1);el.textContent=Math.floor((1-Math.pow(1-p,3))*to);if(p<1)requestAnimationFrame(step);else el.textContent=to}requestAnimationFrame(step)}
   const statObs=new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.cnt').forEach(animateCount);o.unobserve(e.target)}}),{threshold:.35});
   const ss=document.querySelector('.stats');if(ss)statObs.observe(ss);
+  (function(){var sl=document.querySelectorAll('#heroSlides .hslide');if(sl.length>1){var i=0;setInterval(function(){sl[i].classList.remove('on');i=(i+1)%sl.length;sl[i].classList.add('on');},5000);}})();
 </script>
 
 </body>

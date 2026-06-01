@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Publications · Data Science Lab</title>
+<title>Album · Data Science Lab</title>
 <meta name="description" content="명지대학교 산업경영공학과 데이터사이언스 연구실 (Data Science Lab) — 김도현 교수">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
@@ -198,6 +198,18 @@
   .aw .det{color:var(--dim);font-size:.82rem;margin-top:3px}
   @media(max-width:980px){.rrow,.pjgrid,.pubcols,.news{grid-template-columns:1fr}.pitem{grid-template-columns:34px 1fr}}
 </style>
+<style>
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .gallery figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--soft);cursor:pointer;transition:.25s}
+  .gallery figure:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(19,41,75,.12)}
+  .gallery img{width:100%;height:220px;object-fit:cover;display:block}
+  .gallery figcaption{padding:12px 14px;font-size:.86rem;color:var(--muted)}
+  .lb{position:fixed;inset:0;background:rgba(7,16,30,.93);display:none;align-items:center;justify-content:center;z-index:200;padding:30px}
+  .lb.show{display:flex}
+  .lb img{max-width:92vw;max-height:84vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .lb .x{position:absolute;top:14px;right:24px;color:#fff;font-size:2.2rem;line-height:1;cursor:pointer;background:none;border:0}
+  .lb .cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:#dfe7f2;font-size:.95rem;padding:0 20px}
+</style>
 </head>
 <body>
 <div class="topbar"><div class="wrap">
@@ -216,86 +228,26 @@
     <div class="hassub"><a class="top" href="professor.html">Members &#9662;</a>
       <div class="sub"><a href="professor.html">Professor</a><a href="students.html">Students</a><a href="alumni.html">Alumni</a></div>
     </div>
-    <a href="publications.html" class="on">Publications</a>
+    <a href="publications.html">Publications</a>
     <div class="hassub"><a class="top" href="research.html">Research &#9662;</a>
       <div class="sub"><a href="research.html">Research Areas</a><a href="projects.html">Projects</a></div>
     </div>
-    <div class="hassub"><a class="top" href="album.html">Activity &#9662;</a><div class="sub"><a href="album.html">Album</a><a href="lab-seminar.html">Lab Seminar</a></div></div>
+    <div class="hassub"><a class="top on" href="album.html">Activity &#9662;</a><div class="sub"><a href="album.html" class="on">Album</a><a href="lab-seminar.html">Lab Seminar</a></div></div>
       <a href="index.html#contact">Contact</a>
   </div>
   <div class="burger" onclick="document.querySelector('.menu').style.display='flex'"><span></span><span></span><span></span></div>
 </nav></header>
 
 <section class="phero"><div class="wrap">
-  <div class="crumb"><a href="index.html">Home</a> &nbsp;›&nbsp; Publications</div>
-  <div class="eyebrow">International 34 · Domestic 19</div>
-  <h1>Publications</h1>
+  <div class="crumb"><a href="index.html">Home</a> &nbsp;›&nbsp; Activity &nbsp;›&nbsp; Album</div>
+  <div class="eyebrow">Photo Gallery</div>
+  <h1>Album</h1>
 </div></section>
 
-<section class="pubs">
+<section>
   <div class="wrap">
-    <div class="shead reveal"><div class="eyebrow">Publications</div><h2>Publications</h2><div class="bar"></div><p>국제저널 34편 · 국내저널 19편 (저자 중 연구실 구성원은 굵게 표시)</p></div>
-    <h3 class="seclbl">International Journals <span style="color:var(--accent);font-size:.8rem">34편</span></h3>
-    <div class="plist reveal">
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>J. Hwang, S. Ha, and D. Kim</b>, "Wafer defect classification algorithm with label embedding using contrastive learning," <i>IEEE Access</i>, vol. 13, pp. 9708–9717, 2025.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">G. Lee, T. Wang, <b>D. Kim</b>, and M. K. Jeong, "Sparse Group Principal Component Analysis Using Elastic Regularization and Its Application to Virtual Metrology in Semiconductor Manufacturing," Int. J. Prod. Res., vol. 63, no. 3, pp. 865-881, 2024.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>K. Y. Bae</b> and <b>D. Kim</b>, "Predicting Enemy Threats in Ground Operations Using Interpretable Machine Learning," Mil. Oper. Res. J., vol. 29, no. 4, pp. 89-116, 2024.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>S. Lee, M. Park, Y. Ahn</b>, G. B. Jung, and <b>D. Kim</b>, "Analysis of Tabular Data based on Graph Neural Network using Supervised Contrastive Loss," Neurocomputing, vol. 570, pp. 127–137, 2024.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">G. B. Jun, <b>D. Kim</b>, E.-C. Shin, and J.-H. Ha, "Types of Polyunsaturated Fatty Acids in Epididymal Adipose Tissue Are Distinguishable Using Raman Spectroscopy and Multivariate Analysis," J. Med. Food, vol. 26, no. 5, pp. 352–356, 2023.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>S. Lee, C. Lee, K</b>. G. Mun, and <b>D. Kim</b>, "Decision Tree Algorithm Considering Distances Between Classes," IEEE Access, vol. 10, pp. 69750–69756, 2022.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>S. Lee and D. Kim</b>, "Deep Learning based Recommender System Using Cross Convolutional Filters," Inf. Sci., vol. 592, pp. 112–122, 2022.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>S. Lee, E. Jo</b>, S. Hwang, G. B. Jung, and <b>D. Kim</b>, "Similarity based Deep Neural Networks," Int. J. Fuzzy Logic Intell. Syst., vol. 21, no. 3, pp. 205–212, 2021.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">J. Y. Lee, S. Ahn, and <b>D. Kim</b>, "Deep Learning-based Prediction of Future Growth Potential of Technologies," PLoS ONE, vol. 16, no. 6, p. e0252753, 2021.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">H. Park, J. E. Choi, <b>D. Kim</b>, and S. J. Hong, "Artificial Immune System for Fault Detection and Classification of Semiconductor Equipment," Electronics, vol. 10, no. 8, p. 944, 2021.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>M. Park, S. Lee, S</b>. Hwang, and <b>D. Kim</b>, "Additive Ensemble Neural Networks," IEEE Access, vol. 8, pp. 113192–113199, 2020.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">S. Park, N. Song, W. Yu, and <b>D. Kim</b>, "PSR: PSO-Based Signomial Regression Model," Int. J. Fuzzy Logic Intell. Syst., vol. 19, no. 4, pp. 307–314, 2019.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">S. Hwang and <b>D. Kim</b>, "A Scalable Feature based Clustering Algorithm for Sequences with Many Distinct Items," Int. J. Fuzzy Logic Intell. Syst., vol. 18, no. 4, pp. 316–325, 2018.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">G. B. Jung, J.-E. Huh, H.-H. Lee, <b>D. Kim</b>, G.-J. Lee, H.-K. Park, and J.-D. Lee, "Anti-cancer effect of bee venom on human MDA-MB-231 breast cancer cells using Raman spectroscopy," <i>Biomedical Optics Express</i>, vol. 9, no. 11, 2018.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">G. B. Jung, S. W. Kang, G.-J. Lee, and <b>D. Kim</b>, "Biochemical characterization of the brain hippocampal areas after cerebral ischemia-reperfusion using Raman spectroscopy," <i>Applied Spectroscopy</i>, vol. 72, no. 10, pp. 1479–1486, 2018.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">G. B. Jung, I. S. Kang, Y. J. Lee, <b>D. Kim</b>, H.-K. Park, G.-J. Lee, and C. Kim, "Label-free noninvasive characterization of osteoclast differentiation using Raman spectroscopy coupled with multivariate analysis," <i>Current Optics and Photonics</i>, vol. 1, no. 4, pp. 412–420, 2017.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">K. Hwang, <b>D. Kim</b>, K. Lee, C. Lee, and S. Park, "Embedded Variable Selection Method Using Signomial Classification," Ann. Oper. Res., vol. 254, no. 1-2, pp. 89–109, 2017.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">D. Kim, C. Lee, S. Hwang, and M. K. Jeong, "A Robust Support Vector Regression with a Linear-Log Concave Loss Function," J. Oper. Res. Soc., vol. 67, pp. 735–742, 2016.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>J. Y. Seo,</b> J. Y. Lee, S. Ahn, O.-J. Kwon, and <b>D. Kim</b>, "Keyword Hierarchy Construction Using Co-Word Analysis," Information, vol. 19, no. 6, pp. 2397–2492, 2016.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">Y. J. Lee, H. J. Ahn, G. J. Lee, G. B. Jung, G. Lee, <b>D. Kim</b>, J. H. Shin, K. H. Jin, and H. K. Park, "Investigation of biochemical property changes in activation-induced CD8+ T cell apoptosis using Raman spectroscopy," Journal of Biomedical Optics, vol. 20, no. 7, p. 075001, 2015.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">C. Lee, M. Pham, M. K. Jeong, <b>D. Kim</b>, D. K. J. Lin, and A. C. Chavalitwongse, "A network structural approach to the link prediction problem," <i>INFORMS Journal on Computing</i>, vol. 27, no. 2, pp. 249–267, 2015.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>D. Kim</b>, B. Lee, H. J. Lee, S. P. Lee, Y. Moon, and M. K. Jeong, "A graph kernel approach for detecting core patents and patent groups," <i>IEEE Intelligent Systems</i>, vol. 29, no. 4, pp. 44–51, 2015.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">S. Hwang, <b>D. Kim</b>, and M. K. Jeong, "Robust Kernel Based Regression with Bounded Influence for Outliers," J. Oper. Res. Soc., vol. 66, pp. 1385–1398, 2015.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>D. Kim</b>, O.-J. Kwon, S. Ahn, and J. Y. Lee, "Citation Tracking of Core Papers," Information, vol. 17, pp. 35–38, 2014.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>D. Kim</b>, O.-J. Kwon, S. Ahn, and J. Y. Lee, "RFM Analysis for Detecting Core Research Topics," Information, vol. 17, pp. 39–44, 2014.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">K. Lee, <b>N. Kim</b>, and M. K. Jeong, "The Sparse Signomial Classification and Regression Model," Ann. Oper. Res., vol. 216, pp. 257–286, 2014.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">B. Kim, G. Gazzola, J.-M. Lee, <b>D. Kim</b>, K. Kim, and M. K. Jeong, "Inter-cluster connectivity analysis for technology opportunity discovery," <i>Scientometrics</i>, vol. 98, pp. 1811–1825, 2014.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>D. Kim</b>, B. Lee, H. J. Lee, S. P. Lee, Y. Moon, and M. K. Jeong, "Automated detection of influential patents using singular values," <i>IEEE Transactions on Automation Science and Engineering</i>, vol. 9, pp. 723–733, 2012.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>N. Kim</b>, Y. S. Jeong, and M. K. Jeong, "Kernel ridge regression with lagged-dependent variable: applications to prediction of internal bond strength in a medium density fiberboard process," <i>IEEE Transactions on Systems, Man, and Cybernetics, Part C (Applications and Reviews)</i>, vol. 42, pp. 1011–1020, 2012.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">J. I. Park, <b>N. Kim</b>, M. K. Jeong, and K. S. Shin, "Multiphase support vector regression for function approximation with break-points," <i>Journal of the Operational Research Society</i>, vol. 64, pp. 775–785, 2013.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">J. I. Park, <b>N. Kim</b>, and S. J. Bae, "A genetic-based iterative quantile regression algorithm for analyzing fatigue curves," <i>Quality and Reliability Engineering International</i>, vol. 28, pp. 897–909, 2012.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">J. Han, <b>N. Kim</b>, M. K. Jeong, and B.-J. Yum, "Comparisons of classification methods in the original and pattern spaces," <i>Expert Systems with Applications</i>, vol. 38, pp. 12432–12438, 2011.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">J. Han, <b>N. Kim</b>, B.-J. Yum, and M. K. Jeong, "Pattern selection approaches for the logical analysis of data considering the outliers and the coverage of a pattern," <i>Expert Systems with Applications</i>, vol. 38, pp. 13857–13862, 2011.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>D. Kim</b> and B.-J. Yum, "Collaborative filtering based on iterative principal component analysis," <i>Expert Systems with Applications</i>, vol. 28, pp. 823–830, 2005.</div></div>
-    </div>
-    <div style="height:46px"></div>
-    <h3 class="seclbl">Domestic Journals <span style="color:var(--accent);font-size:.8rem">19편</span></h3>
-    <div class="plist reveal">
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>황정준, 윤수아, 김도현</b>, 2025. 대조학습을 활용한 비지도 토픽모델링, 품질경영학회지, Accepted.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>최기정, 김도현</b>, 2025. N-BEATS를 이용한 시계열 변화점 탐지, 신뢰성응용연구, 25(1).</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>황정준</b>, 신영현, 심효섭, <b>김도현</b>, 김동근, 2023. 서울시 공영주차장 군집화 및 수요 예측, 품질경영학회지, 51(4), 497-514.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">서호진, <b>김도현</b>, 변재현, 2023. 제조품질 향상을 위한 데이터 전처리 프로세스, 대한산업공학회지, 49(3), 248-257.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>하소미, 김도현</b>, 2022. 이상치를 고려한 딥러닝 기반 웨이퍼 맵 결함 패턴 클러스터링, 신뢰성응용연구, 22(4), 342-351.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">서호진, 변재현, <b>김도현</b>, 2021. 품질 4.0: 개념, 요소, 수준 평가와 전개 방향, 품질경영학회지, 49(4), 447-466.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">김동근, 박귀원, <b>하소미, 김도현</b>, 2021. 요인분석을 활용한 서울시 자치구/행정동의 지역균형지수 개발, 품질경영학회지, 49(3), 375-392.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>안영근</b>, 김성준, <b>김도현</b>, 김철만, 김우식, 2021. 트리 기반 가스배관 분할 알고리즘을 이용한 잔여수명 예측, 신뢰성응용연구, 21(2), 173-180.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">김성준, <b>김도현</b>, 김철만, 김우식, 2020. API 5L X65 배관의 신뢰도 평가를 위한 파열압력 분포 추정에 관한 연구, 품질경영학회지, 48(4), 597-608.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>김도현</b>, 김성준, 김우식, 김철만, 2020. GAN 기반 데이터생성을 통한 가스배관의 잔여수명분포 추정, 한국지능시스템학회 논문지, 30(1), 80-85.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">황상흠, <b>김도현</b>, 2020. 한국어 기술문서 분석을 위한 BERT 기반의 분류모델, 한국전자거래학회지, 25(1), 203-214.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">김성준, <b>김도현</b>, 김우식, 김철만, 김영표, 2019. 부식기반 복합고장을 고려한 가스배관의 신뢰도 평가, 품질경영학회지, 47(4), 739-754.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit"><b>윤동희, 김수민, 김도현</b>, 2019. 딥러닝을 이용한 시계열데이터 군집화, 신뢰성응용연구, 19(2), 167-178.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">이준영, <b>김도현</b>, 문영호, 권오진, 안세정, 2013. 기술융합의 세계적 추세와 한국의 현황 비교분석. 대한산업공학회지, 39, 222-232.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">이준영, <b>김도현</b>, 안세정, 노경란, 권오진, 2013. 고피인용 논문을 활용한 유망기술 발굴. 한국전자통신학회 논문지, 8, 1655–1664.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">이방래, 이준영, <b>김도현</b>, 노경란, 양명석, 권오진, 최광남, 김한준, 2013. 과학기술 지식맵의 형태적 분류와 정보분석 관점의 지식맵 사례 도출. 한국콘텐츠학회논문지, 13, 461–476.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">안세정, <b>김도현</b>, 권오진, 배영철, 이준영, 2012. 유망영역 탐지를 위한 키워드 매핑의 동태적 분석: 그래핀 사례연구. 한국전자통신학회 논문지, 7, 1393-1401.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">김용수, <b>Kim, N</b>., 염봉진, 2010. 차원 감소 기법을 이용한 전자 상거래 추천 시스템. 대한산업공학회지, 36, 193–202.</div></div>
-      <div class="pitem"><div class="idx"></div><div class="cit">정영선, 이충목, <b>김도현</b>, 이경식, 2010. Remote Health Monitoring of Parkinson’s Disease Severity Using Signomial Regression Model, IE Interfaces, 23, 365-371.</div></div>
-    </div>
-    <div class="center"><a class="btn nv" href="https://scholar.google.co.kr/citations?user=NFUGvgIAAAAJ&hl=ko" target="_blank">Google Scholar에서 보기 &rarr;</a></div>
+    <div class="shead reveal"><div class="eyebrow">Photos</div><h2>연구실 앨범</h2><div class="bar"></div><p>워크숍 · MT · 졸업식 · 학회 등 연구실의 순간들을 모았습니다.</p></div>
+    <div id="gallery" class="gallery"></div>
   </div>
 </section>
 
@@ -309,6 +261,32 @@
   if(hdr){const f=()=>hdr.classList.toggle('scrolled',scrollY>10);f();addEventListener('scroll',f,{passive:true});}
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ===== 앨범 사진 목록: 이 배열만 수정하세요 (images/ 폴더에 사진을 올린 뒤 한 줄씩 추가) ===== */
+var photos = [
+  // images/ 폴더에 사진을 올린 뒤 아래처럼 한 줄씩 추가하세요.
+  // {src:"images/2026-graduation-1.jpg", cap:"2026 학위수여식"},
+  // {src:"images/2026-graduation-2.jpg", cap:"여름 워크숍"}
+];
+/* ============================================================== */
+(function(){
+  var g=document.getElementById('gallery'); if(!g) return;
+  var lb=document.createElement('div'); lb.className='lb';
+  lb.innerHTML='<button class="x" aria-label="닫기">&times;</button><img alt=""><div class="cap"></div>';
+  document.body.appendChild(lb);
+  var li=lb.querySelector('img'), lc=lb.querySelector('.cap');
+  lb.addEventListener('click',function(e){ if(e.target===lb||e.target.classList.contains('x')) lb.classList.remove('show'); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') lb.classList.remove('show'); });
+  if(!photos.length){ g.innerHTML='<p style="color:var(--muted)">등록된 사진이 아직 없습니다.</p>'; return; }
+  photos.forEach(function(p){
+    var fig=document.createElement('figure');
+    var im=document.createElement('img'); im.src=p.src; im.alt=p.cap||''; im.loading='lazy';
+    fig.appendChild(im);
+    if(p.cap){ var fc=document.createElement('figcaption'); fc.textContent=p.cap; fig.appendChild(fc); }
+    fig.addEventListener('click',function(){ li.src=p.src; lc.textContent=p.cap||''; lb.classList.add('show'); });
+    g.appendChild(fig);
+  });
+})();
 </script>
 </body>
 </html>
